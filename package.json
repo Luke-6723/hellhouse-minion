@@ -1,0 +1,14 @@
+{
+  "name": "hellhouseminion",
+  "version": "1.0.0",
+  "description": "A Moderation bot for Hellhouse (https://hellhouse.xyz)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Luke-6723",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^12.3.1"
+  }
+}
