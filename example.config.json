@@ -1,0 +1,12 @@
+{
+  "bot": {
+    "token": "",
+    "defaultPrefix": ""
+  },
+  "database": {
+    "mongoIp": "",
+    "mongoUser": "",
+    "mongoPass": "",
+    "mongoDbName": ""
+  }
+}
