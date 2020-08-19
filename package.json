@@ -8,7 +8,5 @@
   },
   "author": "Luke-6723",
   "license": "MIT",
-  "dependencies": {
-    "discord.js": "^12.3.1"
-  }
+  "dependencies": {}
 }
