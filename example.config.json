@@ -1,7 +1,7 @@
 {
   "bot": {
-    "token": "",
-    "defaultPrefix": ""
+    "amqpUser": "",
+    "amqpPass": ""
   },
   "database": {
     "mongoIp": "",
