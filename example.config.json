@@ -2,7 +2,8 @@
   "bot": {
     "amqpUser": "",
     "amqpPass": "",
-    "amqpHost": ""
+    "amqpHost": "",
+    "amqpPrefix": ""
   },
   "database": {
     "mongoIp": "",

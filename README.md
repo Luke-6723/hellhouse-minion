@@ -9,8 +9,10 @@ Setup the config file in `src/` with the name `config.json`
 ```json
 {
   "bot": {
-    "token": "",
-    "defaultPrefix": ""
+    "amqpUser": "",
+    "amqpPass": "",
+    "amqpHost": "",
+    "amqpPrefix": ""
   },
   "database": {
     "mongoIp": "",
