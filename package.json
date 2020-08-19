@@ -8,5 +8,7 @@
   },
   "author": "Luke-6723",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "amqplib": "^0.6.0"
+  }
 }
