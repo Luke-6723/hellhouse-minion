@@ -1,4 +1,3 @@
-import * as discord from 'discord.js'
 import * as config from './config.json'
 
 class HellhouseMinion {
