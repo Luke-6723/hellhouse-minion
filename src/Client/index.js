@@ -7,7 +7,7 @@ class Client extends EventEmitter {
     super()
     this.config = config
     this.Logger = new Logger('CLIENT')
-    this.queueName = `${config.amqpPrefix}:SEND`
+    this.queuePrefix = `${config.amqpPrefix}`
     this.events = {
       MESSAGE_CREATE: 'message'
     }
@@ -16,17 +16,24 @@ class Client extends EventEmitter {
   async login () {
     // Connect to the message broker
     connect(`amqp://${this.config.amqpUser}:${this.config.amqpPass}@${this.config.amqpHost}`, (_, conn) => {
-      // Create the channel to revieve messages from
+      /**
+       * @name MESSAGE_DELETE
+       */
       conn.createChannel((_, ch) => {
-        // Assert the queue
-        ch.assertQueue(this.queueName, { durable: true })
-        this.emit('ready')
-        // Start consuming incoming events
-        ch.consume(this.queueName, (message) => {
-          // Parse buffer
+        ch.assertQueue(`${this.queuePrefix}:MESSAGE_DELETE`, { durable: true })
+        ch.consume(`${this.queuePrefix}:MESSAGE_DELETE`, (message) => {
           const parsedMessage = JSON.parse(message.content)
-          // Emit the event
-          this.emit(this.events[message.fields.routingKey] || 'debug', { client: this, ...parsedMessage })
+          this.emit('messageDelete', { client: this, ...parsedMessage })
+        }, { noAck: true })
+      })
+      /**
+       * @name MESSAGE_CREATE
+       */
+      conn.createChannel((_, ch) => {
+        ch.assertQueue(`${this.queuePrefix}:MESSAGE_CREATE`, { durable: true })
+        ch.consume(`${this.queuePrefix}:MESSAGE_CREATE`, (message) => {
+          const parsedMessage = JSON.parse(message.content)
+          this.emit('message', { client: this, ...parsedMessage })
         }, { noAck: true })
       })
     })
