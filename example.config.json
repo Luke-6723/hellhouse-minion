@@ -5,6 +5,11 @@
     "amqpHost": "",
     "amqpPrefix": ""
   },
+  "redis": {
+    "host": "",
+    "port": 6379,
+    "password": ""
+  },
   "database": {
     "mongoIp": "",
     "mongoUser": "",
