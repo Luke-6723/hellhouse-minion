@@ -7,7 +7,7 @@ const client = new Client(botConfig)
 client.on('message', events.message)
 
 client.on('ready', () => {
-  console.log('Ready')
+  client.Logger.send('STATUS', 'Ready')
 })
 
 client.login()
