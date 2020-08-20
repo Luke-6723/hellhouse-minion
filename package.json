@@ -9,6 +9,7 @@
   "author": "Luke-6723",
   "license": "MIT",
   "dependencies": {
-    "amqplib": "^0.6.0"
+    "amqplib": "^0.6.0",
+    "chalk": "^4.1.0"
   }
 }
