@@ -3,12 +3,17 @@ const Util = require('../Util')
 const { discord, bot } = require('../config.json')
 
 class Channel {
-  constructor (client, options = { id: '', name: '', channelType: 0, guildID: '' }) {
+  constructor (client, options = { id: '', name: '', channelType: 0, guildID: '', fromCache: false }) {
     this.client = client
     this.id = options.id
     this.name = options.name
     this.guild = options.guildID
     this.channelType = Util.channelTypes[this.channelType]
+    if (options.fromCache) {
+      client.Logger.send('CACHE', 'Registering channel from cache.')
+    } else {
+
+    }
   }
 
   async send (msg) {
