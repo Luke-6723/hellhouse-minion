@@ -9,7 +9,6 @@ module.exports = async (msg) => {
     const instance = new Channel(msg.client, { fromCache: true })
     channel = await Util.deserializeClass(instance, channel)
   }
-  console.log(channel)
   if (msg.author.bot) return
   msg.client.Logger.send('MESSAGE', `Recieved message from ${msg.author.id}`)
 }
