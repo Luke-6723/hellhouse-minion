@@ -29,7 +29,7 @@ class Channel {
       if (messagePost.status === 429) {
         const response = await messagePost.json()
         const sendFunc = this.send.bind(this)
-        this.client.Logger.error('RATELIMIT', 'We are being ratelimited. Retrying after', response.retry_after, 'ms')
+        this.client.Logger.error('RATELIMIT', 'We are being ratelimited. Retrying after', response.retry_after + 'ms', `[GLOBAL: ${response.global ? 'Yes' : 'No'}]`)
         setTimeout(async () => { sendFunc(msg) }, response.retry_after)
       }
     })
