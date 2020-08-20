@@ -1,20 +1,13 @@
-const config = require('./config.json')
-const amqp = require('amqplib/callback_api')
+const Client = require('./Client')
+const botConfig = require('./config.json').bot
+const events = require('./events')
 
-// Set the queue name
-const queueName = `${config.bot.amqpPrefix}:SEND`
+const client = new Client(botConfig)
 
-// Connect to the message broker
-amqp.connect(`amqp://${config.bot.amqpUser}:${config.bot.amqpPass}@${config.bot.amqpHost}`, (_, conn) => {
-  // Create the channel to revieve messages from
-  conn.createChannel((_, ch) => {
-    // Assert the queue
-    ch.assertQueue(queueName, { durable: true })
-    console.log('Waiting...')
-    // Start consuming incoming events
-    ch.consume(queueName, (message) => {
-      // Output result to console
-      console.log('Recieved:\n', JSON.parse(message.content))
-    }, { noAck: true })
-  })
+client.on('message', events.message)
+
+client.on('ready', () => {
+  console.log('Ready')
 })
+
+client.login()
