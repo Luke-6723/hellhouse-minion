@@ -14,11 +14,21 @@ Setup the config file in `src/` with the name `config.json`
     "amqpHost": "",
     "amqpPrefix": ""
   },
+  "redis": {
+    "host": "",
+    "port": 6379,
+    "password": "",
+    "prefix": ""
+  },
   "database": {
     "mongoIp": "",
     "mongoUser": "",
     "mongoPass": "",
     "mongoDbName": ""
+  },
+  "discord": {
+    "discordApiUrl": "https://discord.com/api",
+    "apiVersion": "v6"
   }
 }
 ```
