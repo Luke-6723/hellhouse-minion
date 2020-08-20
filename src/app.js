@@ -1,6 +1,6 @@
 const Client = require('./Client')
 const botConfig = require('./config.json').bot
-const events = require('./events')
+const events = require('./Events')
 
 const client = new Client(botConfig)
 
