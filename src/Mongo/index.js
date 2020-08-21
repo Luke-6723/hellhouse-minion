@@ -2,7 +2,7 @@ const { Schema, model } = require('mongoose')
 const { bot } = require('../config.json')
 
 const UserSchema = new Schema({
-  prefix: { required: true, default: bot.prefix },
+  prefix: { type: String, required: true, default: bot.prefix },
   warnings: Array,
   leveling: Object
 })
