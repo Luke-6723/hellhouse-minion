@@ -9,11 +9,8 @@
   "author": "Luke-6723",
   "license": "MIT",
   "dependencies": {
-    "amqplib": "^0.6.0",
     "chalk": "^4.1.0",
     "discord.js": "^12.3.1",
-    "mongoose": "^5.10.0",
-    "node-fetch": "^2.6.0",
-    "redis": "^3.0.2"
+    "mongoose": "^5.10.0"
   }
 }
