@@ -1,9 +1,6 @@
 {
   "bot": {
-    "amqpUser": "",
-    "amqpPass": "",
-    "amqpHost": "",
-    "amqpPrefix": ""
+    "token": ""
   },
   "redis": {
     "host": "",
@@ -16,9 +13,5 @@
     "mongoUser": "",
     "mongoPass": "",
     "mongoDbName": ""
-  },
-  "discord": {
-    "discordApiUrl": "https://discord.com/api/",
-    "apiVersion": "v6"
   }
 }
