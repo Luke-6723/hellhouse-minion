@@ -1,17 +1,8 @@
-const Redis = require('redis')
-const { promisify } = require('util')
-const { redisHost, redisPass } = require('../config.json').redis
 const { database } = require('../config.json')
 const mongoose = require('mongoose')
 const models = require('../Mongo')
 const Logger = require('../Logger')
 const log = new Logger('UTILS')
-
-// DB 0 - Session handling, DB 1 - Other stuff DB 2 Bot
-const redisClient = Redis.createClient({ host: redisHost, port: '6379', password: redisPass, db: 1 })
-const commands = ['get', 'set', 'del', 'ttl']
-commands.forEach(command => { redisClient[command] = promisify(redisClient[command]).bind(redisClient) })
-redisClient.on('ready', () => { log.send('REDIS', 'Connected') })
 
 mongoose.connect(`mongodb://${database.mongoIp}`, {
   useNewUrlParser: true,
@@ -38,5 +29,3 @@ exports.deserializeClass = async function (instance, obj) {
   instance.cached = true
   return instance
 }
-
-exports.redis = redisClient
