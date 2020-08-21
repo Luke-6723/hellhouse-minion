@@ -3,7 +3,7 @@ const botConfig = require('../config.json').bot
 
 module.exports = async (client, msg) => {
   if (msg.author.bot) return
-  const user = await Util.mongo.Users.findOne({ _id: msg.author.id }).catch(() => {}) || { prefix: botConfig.prefix }
+  const user = await Util.mongo.Users.findOne({ id: msg.author.id }).catch(() => {}) || { prefix: botConfig.prefix }
   const content = msg.content.replace(/[ ]+/g, ' ')
   const givenPrefix = content.substr(0, user.prefix.length)
   const givenCommand = content.substr(user.prefix.length).split(' ')[0]
