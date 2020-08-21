@@ -3,6 +3,7 @@ const { promisify } = require('util')
 const { redisHost, redisPass } = require('../config.json').redis
 const { database } = require('../config.json')
 const mongoose = require('mongoose')
+const models = require('../Mongo')
 const Logger = require('../Logger')
 const log = new Logger('UTILS')
 
@@ -21,7 +22,7 @@ mongoose.connect(`mongodb://${database.mongoIp}`, {
   },
   authSource: 'admin',
   dbName: database.mongoDbName
-}).then(log.send('MONGO', 'Connected'))
+}).then((conn) => { exports.mongo = { connection: conn, ...models }; log.send('MONGO', 'Connected') })
 
 exports.channelTypes = {
   0: 'TEXT'
