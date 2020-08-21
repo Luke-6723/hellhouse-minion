@@ -8,5 +8,5 @@ const UserSchema = new Schema({
 })
 
 module.exports = {
-  users: model('user', UserSchema)
+  Users: model('user', UserSchema)
 }
