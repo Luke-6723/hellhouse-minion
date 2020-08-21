@@ -1,13 +1,18 @@
 const discord = require('discord.js')
 const botConfig = require('./config.json').bot
-const events = require('./Events')
+const Events = require('./Events')
+const Logger = require('./Logger')
 
-const client = new discord.Client()
+class HellhouseMinion {
+  constructor () {
+    this.client = new discord.Client()
+    this.logger = new Logger('CLIENT')
+    this.events = new Events(this.client)
+  }
 
-client.on('message')
+  async login () {
+    await this.client.login(botConfig.token)
+  }
+}
 
-client.on('ready', () => {
-  client.Logger.send('STATUS', 'Ready')
-})
-
-client.login()
+new HellhouseMinion().login()
