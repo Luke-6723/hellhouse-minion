@@ -1,10 +1,10 @@
-const Client = require('./Client')
+const discord = require('discord.js')
 const botConfig = require('./config.json').bot
 const events = require('./Events')
 
-const client = new Client(botConfig)
+const client = new discord.Client()
 
-client.on('message', events.message)
+client.on('message')
 
 client.on('ready', () => {
   client.Logger.send('STATUS', 'Ready')
