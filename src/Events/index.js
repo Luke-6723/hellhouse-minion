@@ -1,4 +1,7 @@
 const Logger = require('../Logger')
+const eventHandlers = {
+  messageCreate: require('./messageCreate')
+}
 
 class Events {
   constructor (client) {
@@ -6,6 +9,7 @@ class Events {
     this.client = client
 
     this.client.on('ready', () => this.logEvent.send('READY', 'Logged in as', this.client.user.tag))
+    this.client.on('message', (msg) => { eventHandlers.messageCreate(client, msg) })
   }
 }
 
