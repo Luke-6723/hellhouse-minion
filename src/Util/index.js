@@ -12,7 +12,7 @@ const commands = ['get', 'set', 'del', 'ttl']
 commands.forEach(command => { redisClient[command] = promisify(redisClient[command]).bind(redisClient) })
 redisClient.on('ready', () => { log.send('REDIS', 'Connected') })
 
-const mongo = mongoose.connect(`mongodb://${database.mongoIp}`, {
+mongoose.connect(`mongodb://${database.mongoIp}`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   auth: {
@@ -21,7 +21,7 @@ const mongo = mongoose.connect(`mongodb://${database.mongoIp}`, {
   },
   authSource: 'admin',
   dbName: database.mongoDbName
-}).then(() => { log.send('MONGO', 'connected') })
+}).then(log.send('MONGO', 'Connected'))
 
 exports.channelTypes = {
   0: 'TEXT'
@@ -39,4 +39,3 @@ exports.deserializeClass = async function (instance, obj) {
 }
 
 exports.redis = redisClient
-exports.mongo = mongo
