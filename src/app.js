@@ -2,6 +2,7 @@ const discord = require('discord.js')
 const botConfig = require('./config.json').bot
 const Events = require('./Events')
 const Logger = require('./Logger')
+const CommandHandler = require('../CommandHandler')
 
 class HellhouseMinion {
   constructor () {
@@ -12,6 +13,7 @@ class HellhouseMinion {
 
   async login () {
     await this.client.login(botConfig.token)
+    this.client.commands = new CommandHandler()
   }
 }
 
