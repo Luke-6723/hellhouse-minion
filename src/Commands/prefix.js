@@ -7,6 +7,7 @@ module.exports = async (client, msg, args) => {
   if (!user) {
     user = new Users({ id: msg.author.id })
   }
+  if (args.length === 0) return msg.channel.send('Invalid Syntax')
   user.prefix = args.join(' ')
   await user.save()
   await msg.channel.send({
