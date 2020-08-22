@@ -15,6 +15,8 @@ mongoose.connect(`mongodb://${database.mongoIp}`, {
   dbName: database.mongoDbName
 }).then((conn) => { exports.mongo = { connection: conn, ...models }; log.send('MONGO', 'Connected') })
 
+exports.defaultEmbedColor = 0xF44444
+
 exports.channelTypes = {
   0: 'TEXT'
 }
@@ -42,5 +44,6 @@ exports.customRoles = {
   gray: '719418496278331428',
   turquuoise: '719418496848494642',
   pink: '719418494789222435',
-  indigo: '719418493098917918'
+  indigo: '719418493098917918',
+  giveaways: '719408025663963147'
 }
