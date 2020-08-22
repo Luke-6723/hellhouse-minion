@@ -3,6 +3,7 @@ const botConfig = require('../config.json').bot
 
 module.exports = async (client, msg) => {
   if (msg.author.bot) return
+  if (msg.author.id !== '116930717241311236') return
   const user = await Util.mongo.Users.findOne({ id: msg.author.id }).catch(() => {}) || { prefix: botConfig.prefix }
   const content = msg.content.replace(/[ ]+/g, ' ')
   const givenPrefix = content.substr(0, user.prefix.length)
