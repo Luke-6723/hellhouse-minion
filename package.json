@@ -5,18 +5,20 @@
   "main": "index.js",
   "dependencies": {
     "chalk": "^4.1.0",
+    "discord.js": "^12.3.1",
+    "mongoose": "^5.10.0",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node src/app"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Luke-6723/hellhouse-minion.git"
   },
   "author": "Luke-6723",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/Luke-6723/hellhouse-minion/issues"
   },
