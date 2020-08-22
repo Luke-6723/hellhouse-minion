@@ -29,3 +29,18 @@ exports.deserializeClass = async function (instance, obj) {
   instance.cached = true
   return instance
 }
+
+exports.customRoles = {
+  red: '719418489902727238',
+  orange: '719418490531872768',
+  yellow: '719418491035451413',
+  green: '719418491861467177',
+  blue: '719418492511846442',
+  purple: '719418493681795082',
+  blurple: '719418494789222435',
+  lightblue: '719418495611174992',
+  gray: '719418496278331428',
+  turquuoise: '719418496848494642',
+  pink: '719418494789222435',
+  indigo: '719418493098917918'
+}
