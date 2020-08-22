@@ -10,9 +10,6 @@
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {},
-  "scripts": {
-    "start": "node src/app"
-  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/Luke-6723/hellhouse-minion.git"
