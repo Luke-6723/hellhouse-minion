@@ -1,5 +1,6 @@
 const { Users } = require('../Mongo')
 const { bot } = require('../config.json')
+const { defaultEmbedColor } = require('../Util')
 
 module.exports = async (client, msg, args) => {
   let user = await Users.findOne({ id: msg.author.id })
@@ -12,6 +13,7 @@ module.exports = async (client, msg, args) => {
   await user.save()
   await msg.channel.send({
     embed: {
+      color: defaultEmbedColor,
       fields: [{
         name: 'Old Prefix',
         value: oldPrefix
