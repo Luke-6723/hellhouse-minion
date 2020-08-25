@@ -10,9 +10,9 @@ const User = new Schema({
     xp: { type: Number, required: true, default: 0 }
   },
   profile: {
-    colorScheme: { type: String, required: true },
-    background: { type: String, required: true },
-    description: { type: String, required: true }
+    colorScheme: { type: String, required: true, default: '' },
+    background: { type: String, required: true, default: '' },
+    description: { type: String, required: true, default: '' }
   },
   warnings: Array,
   leveling: Object
