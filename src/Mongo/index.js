@@ -1,13 +1,27 @@
 const { Schema, model } = require('mongoose')
 const { bot } = require('../config.json')
 
-const UserSchema = new Schema({
+const User = new Schema({
   id: { type: String, required: true },
   prefix: { type: String, required: true, default: bot.prefix },
+  stats: {
+    level: { type: Number, required: true, default: 1 },
+    total: { type: Number, required: true, default: 0 },
+    xp: { type: Number, required: true, default: 0 }
+  },
+  profile: {
+    colorScheme: { type: String, required: true },
+    background: { type: String, required: true },
+    description: { type: String, required: true }
+  },
   warnings: Array,
   leveling: Object
 })
 
-module.exports = {
-  Users: model('user', UserSchema)
+exports.models = {
+  Users: model('user', User)
+}
+
+exports.schemas = {
+  User: User
 }

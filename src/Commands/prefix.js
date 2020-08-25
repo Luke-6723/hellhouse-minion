@@ -1,4 +1,4 @@
-const { Users } = require('../Mongo')
+const { Users } = require('../Mongo').models
 const { bot } = require('../config.json')
 const { defaultEmbedColor } = require('../Util')
 
