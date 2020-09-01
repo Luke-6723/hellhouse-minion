@@ -8,6 +8,15 @@ function getRandomInt (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
+function getUserPerk (member, userData) {
+  const userMultipliers = userData.multipliers
+  const roles = member.roles.cache.map(r => r.name)
+  if (userMultipliers.levelUp) return 'timesTwoMultiplier'
+  else if (roles.includes('Supporter') || roles.includes('Super Supporter') || roles.includes('Epic Supporter')) return 'patron'
+  else if (member.premiumSinceTimestamp) return 'booster'
+  else return 'default'
+}
+
 exports.handleMessage = async (client, msg) => {
   const userid = msg.author.id
   const user = await Users.findOne({ id: userid }) || new Users({ id: userid })
@@ -16,12 +25,12 @@ exports.handleMessage = async (client, msg) => {
     default: getRandomInt(4, 12),
     booster: getRandomInt(6, 14),
     patron: getRandomInt(10, 18),
-    timeTwoMultiplier: getRandomInt(8, 24),
+    timesTwoMultiplier: getRandomInt(8, 24),
     dev: getRandomInt(500, 1000)
   }
   const now = moment(Date.now())
   const lastXpGain = moment(user.stats.lastXpGain)
-  const xpToGive = xpToGiveVariants.dev
+  const xpToGive = xpToGiveVariants[getUserPerk(msg.member, user)]
   if ((lastXpGain.unix() - now.unix()) < 0) {
     const xpAfter = user.stats.xp + xpToGive
     user.stats.total += xpToGive
@@ -42,7 +51,7 @@ exports.handleMessage = async (client, msg) => {
       user.stats.xp += xpToGive
       user.stats.lastXpGain = Date.now()
     }
-    console.log(`Level ${user.stats.level} | XP: ${user.stats.xp}/${xpNeeded} | Just gained: ${xpToGive.dev}XP | Coins: ${user.bank.coins}`)
+    console.log(`Level ${user.stats.level} | XP: ${user.stats.xp}/${xpNeeded} | Just gained: ${xpToGive}XP | Coins: ${user.bank.coins}`)
     await user.save()
   }
 }
