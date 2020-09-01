@@ -1,6 +1,14 @@
 const { Schema, model } = require('mongoose')
 const { bot } = require('../config.json')
 
+const ModLog = new Schema({
+  case: { type: Number, required: true },
+  user_id: { type: String, required: true },
+  moderator_id: { type: String, required: true },
+  reason: { type: String, required: true },
+  message_id: { type: String, required: true }
+})
+
 const User = new Schema({
   id: { type: String, required: true },
   prefix: { type: String, required: false, default: bot.prefix },
@@ -29,7 +37,8 @@ const User = new Schema({
 })
 
 exports.models = {
-  Users: model('user', User)
+  Users: model('user', User),
+  ModLogs: model('modlog', ModLog)
 }
 
 exports.schemas = {
