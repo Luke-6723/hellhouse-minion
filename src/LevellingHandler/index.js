@@ -12,7 +12,7 @@ function getUserPerk (member, userData) {
   const userMultipliers = userData.multipliers
   const roles = member.roles.cache.map(r => r.name)
   if (userMultipliers.levelUp) return 'timesTwoMultiplier'
-  else if (roles.includes('Supporter') || roles.includes('Super Supporter') || roles.includes('Epic Supporter')) return 'patron'
+  else if (roles.includes('Supporter') || roles.includes('Super Supporter') || roles.includes('Epic Supporter') || roles.includes('VIP')) return 'patron'
   else if (member.premiumSinceTimestamp) return 'booster'
   else return 'default'
 }
