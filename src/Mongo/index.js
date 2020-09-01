@@ -3,19 +3,19 @@ const { bot } = require('../config.json')
 
 const User = new Schema({
   id: { type: String, required: true },
-  prefix: { type: String, required: true, default: bot.prefix },
+  prefix: { type: String, required: false, default: bot.prefix },
   stats: {
-    level: { type: Number, required: true, default: 1 },
-    total: { type: Number, required: true, default: 0 },
-    xp: { type: Number, required: true, default: 0 }
+    level: { type: Number, required: false, default: 1 },
+    total: { type: Number, required: false, default: 0 },
+    xp: { type: Number, required: false, default: 0 },
+    lastXpGain: { type: Date, required: false, default: 0 }
   },
   profile: {
-    colorScheme: { type: String, required: true, default: '' },
-    background: { type: String, required: true, default: '' },
-    description: { type: String, required: true, default: '' }
+    colorScheme: { type: String, required: false, default: '' },
+    background: { type: String, required: false, default: '' },
+    description: { type: String, required: false, default: '' }
   },
-  warnings: Array,
-  leveling: Object
+  warnings: Array
 })
 
 exports.models = {
