@@ -31,7 +31,7 @@ exports.handleMessage = async (client, msg) => {
   const now = moment(Date.now())
   const lastXpGain = moment(user.stats.lastXpGain)
   const xpToGive = xpToGiveVariants[getUserPerk(msg.member, user)]
-  if ((lastXpGain.unix() - now.unix()) < 0) {
+  if ((lastXpGain.unix() - now.unix()) < -60) {
     const xpAfter = user.stats.xp + xpToGive
     user.stats.total += xpToGive
     if (xpAfter > xpNeeded) {
