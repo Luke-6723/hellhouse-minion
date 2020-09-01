@@ -20,7 +20,7 @@ module.exports = async (client, msg, args) => {
     })
   }
   const userid = args[0].replace(/[<@!>]/, '')
-  const user = await this.client.users.fetch(userid)
+  const user = await client.users.fetch(userid)
   const reason = args.splice(1).join(' ') || undefined
   await msg.guild.members.unban(userid, `[${msg.author.tag}] ${reason}`)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `🔓 **Unbanned** ${user.tag} (<@${user.id}>)` } })
