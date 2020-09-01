@@ -4,6 +4,10 @@ const { bot } = require('../config.json')
 const User = new Schema({
   id: { type: String, required: true },
   prefix: { type: String, required: false, default: bot.prefix },
+  bank: {
+    coins: { type: Number, required: false, default: 500 },
+    purchases: { type: Number, required: false, default: 0 }
+  },
   stats: {
     level: { type: Number, required: false, default: 1 },
     total: { type: Number, required: false, default: 0 },
@@ -14,6 +18,9 @@ const User = new Schema({
     colorScheme: { type: String, required: false, default: '' },
     background: { type: String, required: false, default: '' },
     description: { type: String, required: false, default: '' }
+  },
+  multipliers: {
+    levelUp: { type: Boolean, required: false, default: false }
   },
   warnings: Array
 })
