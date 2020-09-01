@@ -22,6 +22,9 @@ const User = new Schema({
   multipliers: {
     levelUp: { type: Boolean, required: false, default: false }
   },
+  settings: {
+    levelUpMentions: { type: Boolean, required: false, default: true }
+  },
   warnings: Array
 })
 
