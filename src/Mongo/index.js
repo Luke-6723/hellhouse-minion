@@ -3,6 +3,7 @@ const { bot } = require('../config.json')
 
 const ModLog = new Schema({
   case: { type: Number, required: true },
+  action: { type: String, required: true },
   user_id: { type: String, required: true },
   moderator_id: { type: String, required: true },
   reason: { type: String, required: true },
