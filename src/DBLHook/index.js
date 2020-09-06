@@ -13,4 +13,6 @@ app.post('/webhook', async (req, res) => {
   console.log(data)
 })
 
-app.listen(dsl.port, dsl.ip)
+app.listen(dsl.port, dsl.ip, () => {
+  console.log(`Listening on: ${dsl.ip}:${dsl.port}`)
+})
