@@ -13,8 +13,8 @@ class HellhouseMinion {
         status: 'invisible'
       }
     })
-    this.client.DSLHook = new DSLHook(this.client)
     this.client.commands = new CommandHandler()
+    this.client.DSLHook = new DSLHook(this.client)
     this.events = new Events(this.client)
   }
 
