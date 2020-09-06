@@ -18,10 +18,7 @@ class DSLHook extends EventEmitter {
     app.post('/webhook', async (req, res) => {
       const data = req.body
       const user = this.client.users.cache.get(data.user) || await this.client.users.fetch(data.user)
-      this.emit('vote', {
-        guild: data.guild,
-        user: user
-      })
+      this.emit('vote', data.guild, user)
       log.send('USERVOTE', `${user.tag} voted.`)
       res.status(200).send('OK')
     })
