@@ -6,8 +6,9 @@ const eventHandlers = {
 
 class Events {
   constructor (client) {
+    this.client = client
     this.logEvent = new Logger(' EVENT ')
-    this.client = client.DSLHook.on('vote', eventHandlers.userVote)
+    this.client.DSLHook.on('vote', eventHandlers.userVote)
     this.client.on('ready', () => this.logEvent.send('READY', 'Logged in as', this.client.user.tag))
     this.client.on('message', (msg) => { eventHandlers.messageCreate(this.client, msg) })
   }
