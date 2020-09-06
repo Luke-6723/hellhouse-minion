@@ -1,3 +1,4 @@
+const { dsl } = require('../config.json')
 const express = require('express')
 const app = express()
 const bodyParser = require('body-parser')
@@ -12,4 +13,4 @@ app.post('/webhook', async (req, res) => {
   console.log(data)
 })
 
-app.listen(3000, '0.0.0.0')
+app.listen(dsl.port, dsl.ip)
