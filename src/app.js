@@ -3,6 +3,7 @@ const botConfig = require('./config.json').bot
 const Events = require('./Events')
 const Logger = require('./Logger')
 const CommandHandler = require('./CommandHandler')
+const DSLHook = require('./DSLHook')
 
 class HellhouseMinion {
   constructor () {
@@ -12,6 +13,7 @@ class HellhouseMinion {
         status: 'invisible'
       }
     })
+    this.client.DSLHook = new DSLHook(this.client)
     this.client.commands = new CommandHandler()
     this.events = new Events(this.client)
   }
