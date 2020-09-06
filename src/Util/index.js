@@ -2,7 +2,7 @@ const { database } = require('../config.json')
 const mongoose = require('mongoose')
 const models = require('../Mongo')
 const Logger = require('../Logger')
-const log = new Logger('UTILS')
+const log = new Logger(' UTILS ')
 
 mongoose.connect(`mongodb://${database.mongoIp}`, {
   useNewUrlParser: true,
