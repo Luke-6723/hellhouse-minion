@@ -1,7 +1,7 @@
 const { defaultEmbedColor } = require('../Util')
 
 module.exports = async (client, msg, args) => {
-  if (!msg.members.roles.cache.map(r => r.name).includes('Moderator')) return
+  if (!msg.member.roles.cache.map(r => r.name).includes('Moderator')) return
   if (!msg.member.hasPermission('KICK_MEMBERS')) {
     return msg.channel.send({
       embed: {
