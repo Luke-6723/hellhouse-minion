@@ -34,6 +34,10 @@ const User = new Schema({
   settings: {
     levelUpMentions: { type: Boolean, required: false, default: true }
   },
+  votes: {
+    votes: { type: Number, required: false, default: 1 },
+    lastVoted: { type: Date, required: false, default: 0 }
+  },
   warnings: Array
 })
 
