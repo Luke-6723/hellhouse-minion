@@ -9,7 +9,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 app.post('/webhook', async (req, res) => {
-  const data = await req.json()
+  const data = req.body
   console.log(data)
 })
 
