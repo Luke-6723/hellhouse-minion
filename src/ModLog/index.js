@@ -66,9 +66,9 @@ exports.addUnmute = async (client, user, moderator, reason, unmuteAt) => {
   await modlogCase.save()
 }
 
-exports.addMute = async (client, user, moderator, reason) => {
+exports.addMute = async (client, user, moderator, reason, unmuteAt) => {
   const caseId = (await ModLogs.find({})).length + 1
-  const modlogMessage = await sendEmbed(client, caseId, 'Mute', user, moderator, reason)
+  const modlogMessage = await sendEmbed(client, caseId, 'Mute', user, moderator, reason, unmuteAt)
   const modlogCase = new ModLogs({ case: caseId, action: 'Mute', moderator_id: moderator.id, user_id: user.id, reason: reason, message_id: modlogMessage.id })
   await modlogCase.save()
 }
