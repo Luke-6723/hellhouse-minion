@@ -3,12 +3,12 @@ const ModLog = require('../ModLog')
 
 module.exports = async (client, msg, args) => {
   if (!msg.member.roles.cache.map(r => r.name).includes('Moderator')) return
-  if (!msg.member.hasPermission('MANAGE_MEMBERS')) {
+  if (!msg.member.hasPermission('MANAGE_ROLES')) {
     return msg.channel.send({
       embed: {
         color: defaultEmbedColor,
         title: 'You don\'t have permission to perform this acction.',
-        description: 'You require `MANAGE_MEMBERS` to run this command.'
+        description: 'You require `MANAGE_ROLES` to run this command.'
       }
     })
   }
