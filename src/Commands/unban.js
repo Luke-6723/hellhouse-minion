@@ -1,4 +1,5 @@
 const { defaultEmbedColor } = require('../Util')
+const ModLog = require('../ModLog')
 
 module.exports = async (client, msg, args) => {
   if (!msg.member.roles.cache.map(r => r.name).includes('Moderator')) return
@@ -23,5 +24,6 @@ module.exports = async (client, msg, args) => {
   const user = await client.users.fetch(userid)
   const reason = args.splice(1).join(' ') || undefined
   await msg.guild.members.unban(userid, `[${msg.author.tag}] ${reason}`)
+  await ModLog.addUnban(client, user, msg.author, reason)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `🔓 **Unbanned** ${user.tag} (<@${user.id}>)` } })
 }

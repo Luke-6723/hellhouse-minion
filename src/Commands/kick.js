@@ -1,4 +1,5 @@
 const { defaultEmbedColor } = require('../Util')
+const ModLog = require('../ModLog')
 
 module.exports = async (client, msg, args) => {
   if (!msg.member.roles.cache.map(r => r.name).includes('Moderator')) return
@@ -31,5 +32,6 @@ module.exports = async (client, msg, args) => {
   }
   const reason = args.splice(1).join(' ') || undefined
   await member.kick(`[${msg.author.tag}] ${reason}`)
+  await ModLog.addKick(client, member, msg.author, reason)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `👢 **Kicked** ${member.user.tag} (<@${member.id}>)` } })
 }
