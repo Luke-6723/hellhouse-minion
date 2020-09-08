@@ -1,6 +1,11 @@
 const { Schema, model } = require('mongoose')
 const { bot } = require('../config.json')
 
+const userMute = new Schema({
+  user_id: { type: String, required: true },
+  unmuteTime: { type: Date, required: true }
+})
+
 const ModLog = new Schema({
   case: { type: Number, required: true },
   action: { type: String, required: true },
@@ -43,7 +48,8 @@ const User = new Schema({
 
 exports.models = {
   Users: model('user', User),
-  ModLogs: model('modlog', ModLog)
+  ModLogs: model('modlog', ModLog),
+  Mutes: model('mute', userMute)
 }
 
 exports.schemas = {
