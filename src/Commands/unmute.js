@@ -40,6 +40,7 @@ module.exports = async (client, msg, args) => {
   }
   const reason = args.splice(1).join(' ') || undefined
   const role = msg.guild.roles.cache.find(r => r.name.toLowerCase() === 'muted')
+  await Mutes.deleteMany({ user_id: member.id })
   await member.roles.remove(role, `[${msg.author.tag}] ${reason}`)
   await ModLog.addUnmute(client, member.user, msg.author, reason)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `😄 **Unmuted** ${member.user.tag} (<@${member.id}>)` } })
