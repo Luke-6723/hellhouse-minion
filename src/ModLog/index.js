@@ -47,6 +47,7 @@ const sendEmbed = async (client, caseid, action, target, moderator, reason, unmu
 
 exports.addBan = async (client, user, moderator, reason) => {
   const caseId = (await ModLogs.find({})).length + 1
+  if (!reason) reason = `No reason provided.\n\`Moderator please do -reason ${caseId} <reason>\``
   const modlogMessage = await sendEmbed(client, caseId, 'Ban', user, moderator, reason)
   const modlogCase = new ModLogs({ case: caseId, action: 'Ban', moderator_id: moderator.id, user_id: user.id, reason: reason, message_id: modlogMessage.id })
   await modlogCase.save()
@@ -54,6 +55,7 @@ exports.addBan = async (client, user, moderator, reason) => {
 
 exports.addUnban = async (client, user, moderator, reason) => {
   const caseId = (await ModLogs.find({})).length + 1
+  if (!reason) reason = `No reason provided.\n\`Moderator please do -reason ${caseId} <reason>\``
   const modlogMessage = await sendEmbed(client, caseId, 'Unban', user, moderator, reason)
   const modlogCase = new ModLogs({ case: caseId, action: 'Unban', moderator_id: moderator.id, user_id: user.id, reason: reason, message_id: modlogMessage.id })
   await modlogCase.save()
@@ -61,6 +63,7 @@ exports.addUnban = async (client, user, moderator, reason) => {
 
 exports.addUnmute = async (client, user, moderator, reason, unmuteAt) => {
   const caseId = (await ModLogs.find({})).length + 1
+  if (!reason) reason = `No reason provided.\n\`Moderator please do -reason ${caseId} <reason>\``
   const modlogMessage = await sendEmbed(client, caseId, 'Unmute', user, moderator, reason)
   const modlogCase = new ModLogs({ case: caseId, action: 'Unmute', moderator_id: moderator.id, user_id: user.id, reason: reason, message_id: modlogMessage.id })
   await modlogCase.save()
@@ -68,6 +71,7 @@ exports.addUnmute = async (client, user, moderator, reason, unmuteAt) => {
 
 exports.addMute = async (client, user, moderator, reason, unmuteAt) => {
   const caseId = (await ModLogs.find({})).length + 1
+  if (!reason) reason = `No reason provided.\n\`Moderator please do -reason ${caseId} <reason>\``
   const modlogMessage = await sendEmbed(client, caseId, 'Mute', user, moderator, reason, unmuteAt)
   const modlogCase = new ModLogs({ case: caseId, action: 'Mute', moderator_id: moderator.id, user_id: user.id, reason: reason, message_id: modlogMessage.id })
   await modlogCase.save()
@@ -75,6 +79,7 @@ exports.addMute = async (client, user, moderator, reason, unmuteAt) => {
 
 exports.addKick = async (client, user, moderator, reason) => {
   const caseId = (await ModLogs.find({})).length + 1
+  if (!reason) reason = `No reason provided.\n\`Moderator please do -reason ${caseId} <reason>\``
   const modlogMessage = await sendEmbed(client, caseId, 'Kick', user, moderator, reason)
   const modlogCase = new ModLogs({ case: caseId, action: 'Kick', moderator_id: moderator.id, user_id: user.id, reason: reason, message_id: modlogMessage.id })
   await modlogCase.save()
@@ -82,6 +87,7 @@ exports.addKick = async (client, user, moderator, reason) => {
 
 exports.addWarn = async (client, user, moderator, reason) => {
   const caseId = (await ModLogs.find({})).length + 1
+  if (!reason) reason = `No reason provided.\n\`Moderator please do -reason ${caseId} <reason>\``
   const modlogMessage = await sendEmbed(client, caseId, 'Warn', user, moderator, reason)
   const modlogCase = new ModLogs({ case: caseId, action: 'Warn', moderator_id: moderator.id, user_id: user.id, reason: reason, message_id: modlogMessage.id })
   await modlogCase.save()
