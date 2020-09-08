@@ -67,6 +67,6 @@ module.exports = async (client, msg, args) => {
   }
   const role = msg.guild.roles.cache.find(r => r.name.toLowerCase() === 'muted')
   await member.roles.add(role, `[${msg.author.tag}] ${reason}`)
-  await ModLog.addMute(client, member, msg.author, reason, unmuteAt)
+  await ModLog.addMute(client, member.user, msg.author, reason, unmuteAt)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `🤐 **Muted** ${member.user.tag} (<@${member.id}>)` } })
 }
