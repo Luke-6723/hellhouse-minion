@@ -1,8 +1,9 @@
 const { defaultEmbedColor } = require('../Util')
+const { token } = require('../config.json').bot
 const fetch = require('node-fetch')
 
 const clean = text => {
-  if (typeof (text) === 'string') { return text.replace(process.env.token, '[TOKEN REDACTED]').replace(process.env.devtoken, '[TOKEN REDACTED]').replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203)) } else { return text }
+  if (typeof (text) === 'string') { return text.replace(token, '[TOKEN REDACTED]').replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203)) } else { return text }
 }
 
 module.exports = async (client, msg, args) => {
