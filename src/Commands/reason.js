@@ -16,8 +16,20 @@ module.exports = async (client, msg, args) => {
     return msg.channel.send({
       embed: {
         color: defaultEmbedColor,
-        description: 'Please give a reason'
+        description: 'Please give a case to update'
       }
     })
   }
+  const caseId = Number(args[0])
+  if (isNaN(caseId)) {
+    return msg.channel.send({
+      embed: {
+        color: defaultEmbedColor,
+        description: 'Please give a case to update'
+      }
+    })
+  }
+  ModLog.updateEmbed(client, caseId, args.splice(1).join(' ')).then(async () => {
+    await msg.delete()
+  })
 }

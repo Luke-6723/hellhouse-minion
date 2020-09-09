@@ -1,4 +1,4 @@
-const { ModLogs } = require('../Mongo').models
+const { ModLogs, Mutes } = require('../Mongo').models
 const { modLogChannel } = require('../config.json').bot
 
 const modlogColors = {
@@ -9,6 +9,49 @@ const modlogColors = {
   unmute: 581126,
   unban: 581126,
   test: 255
+}
+
+exports.updateEmbed = async (client, caseId, newReason) => {
+  const modLogCase = await ModLogs.findOne({ case: caseId })
+  if (!modLogCase) return undefined
+  const modLogMessage = await client.channels.cache.get(modLogChannel).messages.fetch(modLogCase.message_id)
+  if (!modLogMessage) return undefined
+  let unmuteAt = ''
+
+  if (modLogCase.action === 'Mute') {
+    const reasonSplit = newReason ? newReason.split('|') : []
+    let timeToMute = 0
+    if (reasonSplit.length > 1) {
+      const timeWithoutSpaces = reasonSplit[1].replace(/[ ]/g, '')
+      const timeSplitNumbers = timeWithoutSpaces.split(/(\d+[aA-zZ]+)/)
+      timeSplitNumbers.forEach(n => {
+        const number = n.replace(/[aA-zZ]/g, '')
+        if (!number) return
+        const timeFrame = n.replace(/[0-9]/g, '')
+        if (['weeks', 'w', 'week'].includes(timeFrame.toLowerCase())) timeToMute += (parseInt(number) * 604800)
+        if (['days', 'd', 'day'].includes(timeFrame.toLowerCase())) timeToMute += (parseInt(number) * 86400)
+        if (['hours', 'hrs', 'hr', 'h', 'hour'].includes(timeFrame.toLowerCase())) timeToMute += (parseInt(number) * 3600)
+        if (['min', 'mins', 'm', 'minutes', 'minute'].includes(timeFrame.toLowerCase())) timeToMute += (parseInt(number) * 60)
+        if (['sec', 'secs', 's', 'seconds', 'second'].includes(timeFrame.toLowerCase())) timeToMute += (parseInt(number) * 1)
+      })
+    }
+    if (timeToMute > 0) {
+      const messageCreation = new Date(modLogMessage.createdAt)
+      const unmuteDate = new Date((messageCreation - 1) + (timeToMute * 1000))
+      unmuteAt = `Unmute at: ${unmuteDate.getUTCFullYear()}-${unmuteDate.getUTCMonth() + 1}-${unmuteDate.getUTCDate()} ${unmuteDate.getUTCHours()}:${unmuteDate.getUTCMinutes()} UTC `
+      const unmuteTime = await Mutes.findOne({ user_id: modLogCase.user_id })
+      if (unmuteTime) {
+        unmuteTime.unmuteTime = unmuteDate
+        await unmuteTime.save()
+      }
+    }
+  }
+
+  modLogMessage.embeds[0].fields[2].value = newReason
+  modLogMessage.embeds[0].footer.text = unmuteAt
+  modLogCase.reason = newReason
+  await modLogCase.save()
+  return modLogMessage.edit(modLogMessage.embeds[0])
 }
 
 const sendEmbed = async (client, caseid, action, target, moderator, reason, unmuteAt) => {
