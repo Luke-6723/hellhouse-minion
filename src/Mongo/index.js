@@ -2,6 +2,7 @@ const { Schema, model } = require('mongoose')
 const { bot } = require('../config.json')
 
 const userMute = new Schema({
+  modLogCaseID: { type: Number, required: true },
   user_id: { type: String, required: true },
   unmuteTime: { type: Date, required: true }
 })
