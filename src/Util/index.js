@@ -13,7 +13,7 @@ mongoose.connect(`mongodb://${database.mongoIp}`, {
   },
   authSource: 'admin',
   dbName: database.mongoDbName
-}).then((conn) => { exports.mongo = { connection: conn, ...models }; log.send('MONGO', 'Connected') })
+}).then((conn) => { exports.mongo = { connection: conn, ...models }; log.send(' MONGO ', 'Connected') })
 
 exports.defaultEmbedColor = 0xF44444
 
