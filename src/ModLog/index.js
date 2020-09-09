@@ -38,7 +38,7 @@ exports.updateEmbed = async (client, caseId, newReason) => {
     if (timeToMute > 0) {
       const messageCreation = new Date(modLogMessage.createdAt)
       const unmuteDate = new Date((messageCreation - 1) + (timeToMute * 1000))
-      unmuteAt = `Unmute at: ${unmuteDate.getUTCFullYear()}-${unmuteDate.getUTCMonth() + 1}-${unmuteDate.getUTCDate()} ${unmuteDate.getUTCHours()}:${unmuteDate.getUTCMinutes()} UTC `
+      unmuteAt = `Unmute at: ${unmuteDate.getUTCFullYear()}-${(unmuteDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${unmuteDate.getUTCDate().toString().padStart(2, '0')} ${unmuteDate.getUTCHours().toString().padStart(2, '0')}:${unmuteDate.getUTCMinutes().toString().padStart(2, '0')} UTC `
       const unmuteTime = await Mutes.findOne({ user_id: modLogCase.user_id })
       if (unmuteTime) {
         unmuteTime.unmuteTime = unmuteDate

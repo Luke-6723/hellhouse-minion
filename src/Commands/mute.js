@@ -60,7 +60,7 @@ module.exports = async (client, msg, args) => {
   if (timeToMute > 0) {
     const now = Date.now()
     unmuteDate = new Date(now + (timeToMute * 1000))
-    unmuteAt = `Unmute at: ${unmuteDate.getUTCFullYear()}-${unmuteDate.getUTCMonth() + 1}-${unmuteDate.getUTCDate()} ${unmuteDate.getUTCHours()}:${unmuteDate.getUTCMinutes()} UTC `
+    unmuteAt = `Unmute at: ${unmuteDate.getUTCFullYear()}-${(unmuteDate.getUTCMonth() + 1).toString().padStart(2, '0')}-${unmuteDate.getUTCDate().toString().padStart(2, '0')} ${unmuteDate.getUTCHours().toString().padStart(2, '0')}:${unmuteDate.getUTCMinutes().toString().padStart(2, '0')} UTC `
   }
   const role = msg.guild.roles.cache.find(r => r.name.toLowerCase() === 'muted')
   await member.roles.add(role, `[${msg.author.tag}] ${reason}`)
