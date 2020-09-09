@@ -11,15 +11,16 @@ class HellhouseMinion {
     this.client = new discord.Client({
       presence: {
         status: 'invisible'
-      }
+      },
+      fetchAllMembers: true
     })
     this.client.commands = new CommandHandler()
     this.client.DSLHook = new DSLHook(this.client)
-    this.events = new Events(this.client)
   }
 
   async login () {
     await this.client.login(botConfig.token)
+    this.events = new Events(this.client)
   }
 }
 
