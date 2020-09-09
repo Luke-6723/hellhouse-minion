@@ -51,7 +51,6 @@ exports.handleMessage = async (client, msg) => {
       user.stats.xp += xpToGive
       user.stats.lastXpGain = Date.now()
     }
-    console.log(`Level ${user.stats.level} | XP: ${user.stats.xp}/${xpNeeded} | Just gained: ${xpToGive}XP | Coins: ${user.bank.coins}`)
     await user.save()
   }
 }
