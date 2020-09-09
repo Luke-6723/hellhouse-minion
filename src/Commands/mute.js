@@ -21,6 +21,7 @@ module.exports = async (client, msg, args) => {
       }
     })
   }
+  let unmuteDate
   const userid = args[0].replace(/[<@!>]/g, '')
   const member = msg.guild.members.cache.get(userid)
   if (!member) {
@@ -58,15 +59,18 @@ module.exports = async (client, msg, args) => {
   let unmuteAt = ''
   if (timeToMute > 0) {
     const now = Date.now()
-    const unmuteDate = new Date(now + (timeToMute * 1000))
+    unmuteDate = new Date(now + (timeToMute * 1000))
     unmuteAt = `Unmute at: ${unmuteDate.getUTCFullYear()}-${unmuteDate.getUTCMonth() + 1}-${unmuteDate.getUTCDate()} ${unmuteDate.getUTCHours()}:${unmuteDate.getUTCMinutes()} UTC `
+  }
+  const role = msg.guild.roles.cache.find(r => r.name.toLowerCase() === 'muted')
+  await member.roles.add(role, `[${msg.author.tag}] ${reason}`)
+  const modLogCase = await ModLog.addMute(client, member.user, msg.author, reason, unmuteAt)
+  if (unmuteDate) {
     await Mutes.create({
+      modLogCaseID: modLogCase,
       user_id: member.id,
       unmuteTime: unmuteDate
     })
   }
-  const role = msg.guild.roles.cache.find(r => r.name.toLowerCase() === 'muted')
-  await member.roles.add(role, `[${msg.author.tag}] ${reason}`)
-  await ModLog.addMute(client, member.user, msg.author, reason, unmuteAt)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `🤐 **Muted** ${member.user.tag} (<@${member.id}>)` } })
 }
