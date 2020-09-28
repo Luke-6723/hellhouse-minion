@@ -48,7 +48,7 @@ exports.updateEmbed = async (client, caseId, newReason) => {
   }
 
   modLogMessage.embeds[0].fields[2].value = newReason
-  modLogMessage.embeds[0].footer.text = unmuteAt
+  if (modLogMessage.embeds[0].footer) modLogMessage.embeds[0].footer.text = unmuteAt
   modLogCase.reason = newReason
   await modLogCase.save()
   return modLogMessage.edit(modLogMessage.embeds[0])
