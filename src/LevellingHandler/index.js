@@ -8,10 +8,9 @@ function getRandomInt (min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min
 }
 
-function getUserPerk (member, userData) {
-  const userMultipliers = userData.multipliers
+function getUserPerk (member) {
   const roles = member.roles.cache.map(r => r.name)
-  if (userMultipliers.levelUp) return 'timesTwoMultiplier'
+  if (roles.includes('Voted')) return 'voted'
   else if (roles.includes('Supporter') || roles.includes('Super Supporter') || roles.includes('Epic Supporter') || roles.includes('VIP')) return 'patron'
   else if (member.premiumSinceTimestamp) return 'booster'
   else return 'default'
@@ -25,7 +24,7 @@ exports.handleMessage = async (client, msg) => {
     default: getRandomInt(4, 12),
     booster: getRandomInt(6, 14),
     patron: getRandomInt(10, 18),
-    timesTwoMultiplier: getRandomInt(8, 24),
+    voted: getRandomInt(8, 24),
     dev: getRandomInt(500, 1000)
   }
   const now = moment(Date.now())
