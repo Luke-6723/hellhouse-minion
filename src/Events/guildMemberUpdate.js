@@ -1,7 +1,6 @@
 const ModLog = require('../ModLog')
 
 module.exports = async (oldMember, newMember) => {
-  console.log(1)
   const oldMemberRoles = oldMember.roles.cache.map(r => r.name.toLowerCase())
   const newMemberRoles = newMember.roles.cache.map(r => r.name.toLowerCase())
   const guild = oldMember.guild
