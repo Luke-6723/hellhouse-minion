@@ -39,8 +39,7 @@ exports.run = async (client, msg, args) => {
     })
   }
   const reason = args.splice(1).join(' ') || undefined
-  await member.kick(`[${msg.author.tag}] ${reason}`)
-  await ModLog.addKick(client, member, msg.author, reason)
+  await ModLog.addWarn(client, member, msg.author, reason)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `🔈 **Warned** ${member.user.tag} (<@${member.id}>) for:\n\n${reason}` } })
 }
 
