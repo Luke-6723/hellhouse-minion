@@ -15,6 +15,10 @@ class DSLHook extends EventEmitter {
     // support parsing of application/x-www-form-urlencoded post data
     app.use(bodyParser.urlencoded({ extended: true }))
 
+    app.get('/', (req, res) => {
+      res.status(200).json({ message: 'Hello world' })
+    })
+
     app.post('/webhook', async (req, res) => {
       const data = req.body
       const user = this.client.users.cache.get(data.user) || await this.client.users.fetch(data.user)
