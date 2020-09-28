@@ -4,6 +4,7 @@ const Events = require('./Events')
 const Logger = require('./Logger')
 const CommandHandler = require('./CommandHandler')
 const DSLHook = require('./DSLHook')
+const ServerLog = require('./ServerLog')
 
 class HellhouseMinion {
   constructor () {
@@ -16,6 +17,7 @@ class HellhouseMinion {
     })
     this.client.commands = new CommandHandler()
     this.client.DSLHook = new DSLHook(this.client)
+    this.client.ServerLog = new ServerLog(this.client)
   }
 
   async login () {
