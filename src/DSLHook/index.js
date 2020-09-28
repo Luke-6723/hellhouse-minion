@@ -24,6 +24,7 @@ class DSLHook extends EventEmitter {
       const user = this.client.users.cache.get(data.user) || await this.client.users.fetch(data.user)
       this.emit('vote', data.guild, user)
       log.send('USERVOTE', `${user.tag} voted.`)
+      client.channels.cache.get(dsl.voteChannel).send(`Thanks **${user.tag}** (<@${user.id}>) for voting!`)
       res.status(200).send('OK')
     })
 
