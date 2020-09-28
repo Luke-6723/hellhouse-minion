@@ -2,7 +2,7 @@
   "name": "hellhouseminion",
   "version": "1.0.0",
   "description": "A moderation bot for the [Hellhouse Discord](https://hellhouse.xyz)",
-  "main": "index.js",
+  "main": "src/app.js",
   "dependencies": {
     "body-parser": "^1.19.0",
     "chalk": "^4.1.0",
