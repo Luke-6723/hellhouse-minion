@@ -30,7 +30,8 @@ exports.run = async (client, msg, args) => {
       }
     })
   }
-  if (args.splice(1).length === 0) {
+  args = args.splice(1)
+  if (args.length === 0) {
     return msg.channel.send({
       embed: {
         color: defaultEmbedColor,
@@ -38,7 +39,7 @@ exports.run = async (client, msg, args) => {
       }
     })
   }
-  const reason = args.splice(1).join(' ') || undefined
+  const reason = args.join(' ')
   await ModLog.addWarn(client, member, msg.author, reason)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `🔈 **Warned** ${member.user.tag} (<@${member.id}>) for:\n\n${reason}` } })
 }
