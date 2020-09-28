@@ -33,3 +33,5 @@ module.exports = async (client, msg, args) => {
     await msg.delete()
   })
 }
+
+exports.aliases = ['r']

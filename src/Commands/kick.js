@@ -35,3 +35,5 @@ module.exports = async (client, msg, args) => {
   await ModLog.addKick(client, member, msg.author, reason)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `👢 **Kicked** ${member.user.tag} (<@${member.id}>)` } })
 }
+
+exports.aliases = ['k']

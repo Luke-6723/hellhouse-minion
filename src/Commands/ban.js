@@ -27,3 +27,5 @@ module.exports = async (client, msg, args) => {
   await ModLog.addBan(client, user, msg.author, reason)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `<:banned:720946004102479872> **Banned** ${user.tag} (<@${user.id}>)` } })
 }
+
+exports.aliases = ['b', 'yeet']

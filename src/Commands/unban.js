@@ -27,3 +27,5 @@ module.exports = async (client, msg, args) => {
   await ModLog.addUnban(client, user, msg.author, reason)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `🔓 **Unbanned** ${user.tag} (<@${user.id}>)` } })
 }
+
+exports.aliases = ['ub']

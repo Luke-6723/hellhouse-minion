@@ -74,3 +74,5 @@ module.exports = async (client, msg, args) => {
   }
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `🤐 **Muted** ${member.user.tag} (<@${member.id}>)` } })
 }
+
+exports.aliases = ['m']

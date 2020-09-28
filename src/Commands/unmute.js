@@ -45,3 +45,5 @@ module.exports = async (client, msg, args) => {
   await ModLog.addUnmute(client, member.user, msg.author, reason)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `😄 **Unmuted** ${member.user.tag} (<@${member.id}>)` } })
 }
+
+exports.aliases = ['um']
