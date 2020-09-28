@@ -1,7 +1,7 @@
 const { defaultEmbedColor } = require('../Util')
 const ModLog = require('../ModLog')
 
-module.exports = async (client, msg, args) => {
+exports.run = async (client, msg, args) => {
   if (!msg.member.roles.cache.map(r => r.name).includes('Moderator')) return
   if (!msg.member.hasPermission('BAN_MEMBERS')) {
     return msg.channel.send({
@@ -27,5 +27,3 @@ module.exports = async (client, msg, args) => {
   await ModLog.addBan(client, user, msg.author, reason)
   return msg.channel.send({ embed: { color: defaultEmbedColor, description: `<:banned:720946004102479872> **Banned** ${user.tag} (<@${user.id}>)` } })
 }
-
-exports.aliases = ['b', 'yeet']

@@ -2,7 +2,7 @@
 const { Users } = require('../Mongo').models
 const { defaultEmbedColor } = require('../Util')
 
-module.exports = async (client, msg) => {
+exports.run = async (client, msg) => {
   const user = await Users.findOne({ id: msg.author.id })
   const xpNeeded = ((user.stats.level * 265) * 6)
   const levelProgress = (user.stats.xp / xpNeeded) * 100

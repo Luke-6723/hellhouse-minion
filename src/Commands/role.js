@@ -1,6 +1,6 @@
 const { customRoles } = require('../Util')
 
-module.exports = async (client, msg, args) => {
+exports.run = async (client, msg, args) => {
   if (args.length <= 0) return msg.channel.send('Available options: `add`, `remove`')
   if (args.length >= 1) {
     switch (args[0]) {

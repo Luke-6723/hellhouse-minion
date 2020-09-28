@@ -2,7 +2,7 @@ const { Users } = require('../Mongo').models
 const { bot } = require('../config.json')
 const { defaultEmbedColor } = require('../Util')
 
-module.exports = async (client, msg, args) => {
+exports.run = async (client, msg, args) => {
   let user = await Users.findOne({ id: msg.author.id })
   const oldPrefix = user ? user.prefix || bot.prefix : bot.prefix
   if (!user) {

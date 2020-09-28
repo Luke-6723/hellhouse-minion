@@ -1,6 +1,6 @@
 const { defaultEmbedColor } = require('../Util')
 
-module.exports = async (client, msg) => {
+exports.run = async (client, msg) => {
   await msg.channel.send({
     embed: {
       color: defaultEmbedColor,

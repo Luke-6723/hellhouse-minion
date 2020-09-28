@@ -11,6 +11,7 @@ class CommandHandler {
       files.forEach(command => {
         const commandName = command.split('.js')[0]
         this[commandName] = require(`${process.cwd().replace(/[\\]+/g, '/')}/src/Commands/${command}`)
+        console.log(this[commandName])
         if (this[commandName].aliases) {
           this[commandName].aliases.forEach(alias => {
             this[alias] = require(`${process.cwd().replace(/[\\]+/g, '/')}/src/Commands/${command}`)

@@ -2,7 +2,7 @@ const { defaultEmbedColor } = require('../Util')
 const { Mutes } = require('../Mongo').models
 const ModLog = require('../ModLog')
 
-module.exports = async (client, msg, args) => {
+exports.run = async (client, msg, args) => {
   if (!msg.member.roles.cache.map(r => r.name).includes('Moderator')) return
   if (!msg.member.hasPermission('MANAGE_ROLES')) {
     return msg.channel.send({

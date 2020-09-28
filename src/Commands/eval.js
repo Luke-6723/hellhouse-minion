@@ -6,7 +6,7 @@ const clean = text => {
   if (typeof (text) === 'string') { return text.replace(token, '[TOKEN REDACTED]').replace(/`/g, '`' + String.fromCharCode(8203)).replace(/@/g, '@' + String.fromCharCode(8203)) } else { return text }
 }
 
-module.exports = async (client, msg, args) => {
+exports.run = async (client, msg, args) => {
   if (msg.author.id !== '116930717241311236') return
   const code = args.join(' ')
   try {
